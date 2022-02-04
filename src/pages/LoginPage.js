@@ -31,11 +31,15 @@ class LoginPage extends Component {
             username,
             password
         }
+
+        const { push }  = this.props.history;
+
         this.setState({
             error: null
         });
         try {
             await login(creds);
+            push('/');
         } catch (apiError) {
             this.setState({
                 error: apiError.response.data.message
@@ -59,11 +63,11 @@ class LoginPage extends Component {
                         {this.state.error}
                     </div>}
                     <div className="text-center mt-2">
-                        <ButtonWithProgress 
-                        disabled={!buttonEnabled || pendingApiCall} 
-                        onClick={this.onClickLogin}
-                        pendingApiCall = {pendingApiCall}
-                        text = {t('Login')}
+                        <ButtonWithProgress
+                            disabled={!buttonEnabled || pendingApiCall}
+                            onClick={this.onClickLogin}
+                            pendingApiCall={pendingApiCall}
+                            text={t('Login')}
                         />
                     </div>
                 </form>
