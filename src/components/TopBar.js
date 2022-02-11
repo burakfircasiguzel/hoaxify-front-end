@@ -2,19 +2,22 @@ import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import logo from '../assets/hoaxify.png';
+import { connect } from 'react-redux';
 
 class TopBar extends Component {
 
-    state = {
-        isLoggedIn: true,
-        username : 'user1'
+    onClickLogout = () => {
+        const action = {
+            type: 'logout-success'
+        };
+        this.props.dispatch(action) 
     }
 
     render() {
-        const { t } = this.props;
-        const { isLoggedIn, username } = this.state;
-
-        let links = (<ul className="navbar-nav ml-auto">
+        //console.log(this.props);
+        const { t, username, isLoggedIn } = this.props;
+        
+        let links = (<ul className="navbar-nav ms-auto">
             <li>
                 <Link className='nav-link' to="/login">
                     {t('Login')}
@@ -27,15 +30,15 @@ class TopBar extends Component {
                 </Link>
             </li>
         </ul>);
-        if(isLoggedIn){
+        if (isLoggedIn) {
             links = (
-                <ul className="navbar-nav ml-auto">
+                <ul className="navbar-nav ms-auto">
                     <li >
                         <Link className='nav-link' to={`/user/${username}`}>
-                        {username}
+                            {username}
                         </Link>
                     </li>
-                    <li className='nav-link'>
+                    <li className='nav-link' onClick={this.onClickLogout} style={{cursor:'pointer'}}>
                         {t('Logout')}
                     </li>
                 </ul>
@@ -58,4 +61,13 @@ class TopBar extends Component {
         );
     }
 }
-export default withTranslation()(TopBar);
+const TopBarWithTranslation = withTranslation()(TopBar);
+
+const mapsStateToProps = (store) =>{
+    return {
+        isLoggedIn: store.isLoggedIn,
+        username: store.username
+    }
+}
+
+export default connect(mapsStateToProps)(TopBarWithTranslation);

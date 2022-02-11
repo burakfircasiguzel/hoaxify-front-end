@@ -27,6 +27,7 @@ class LoginPage extends Component {
     onClickLogin = async event => {
         event.preventDefault();
         const { username, password } = this.state;
+        const  onLoginSuccess = () => {}
         const creds = {
             username,
             password

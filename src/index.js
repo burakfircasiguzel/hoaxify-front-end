@@ -5,11 +5,38 @@ import './bootstrap-override.scss';
 import reportWebVitals from './reportWebVitals';
 import './i18n';
 import App from './container/App';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+
+const loggedInState = {
+  isLoggedIn : true,
+  username: 'user1',
+  displayName: 'display1',
+  image: null,
+  password: 'P4ssword'
+};
+const defaultState = {
+  isLoggedIn : false,
+  username: 'user1',
+  displayName: 'display1',
+  image: null,
+  password: 'P4ssword'
+};
+const reducer = (state = {... defaultState}, action) => {
+    //console.log(action);
+    if(action.type === "logout-success"){
+        return defaultState;
+    }
+    return state;
+};
+
+const store = createStore(reducer, loggedInState);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
