@@ -2,10 +2,10 @@ import * as ACTIONS from './Constants';
 
 const defaultState = {
     isLoggedIn : false,
-    username: '',
-    displayName: 'display1',
-    image: null,
-    password: 'P4ssword'
+    username: undefined,
+    displayName: undefined,
+    image: undefined,
+    password: undefined
   };
   const authReducer = (state = {... defaultState}, action) => {
       //console.log(action);
