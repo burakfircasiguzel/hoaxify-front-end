@@ -3,8 +3,8 @@ import authReducer from './authReducer';
 
 
 const loggedInState = {
-    isLoggedIn : true,
-    username: 'user1',
+    isLoggedIn : false,
+    username: '',
     displayName: 'display1',
     image: null,
     password: 'P4ssword'

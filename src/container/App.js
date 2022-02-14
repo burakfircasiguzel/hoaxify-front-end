@@ -7,11 +7,11 @@ import HomePage from '../pages/HomePage';
 import UserPage from '../pages/UserPage';
 import TopBar from '../components/TopBar';
 import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-
+import { connect } from 'react-redux';
 
 class App extends React.Component {
   render() {
-    const isLoggedIn = false;
+    const {isLoggedIn} = this.props;
     return (
       <div className='row'>
         <Router>
@@ -31,4 +31,11 @@ class App extends React.Component {
     );
   }
 }
-export default App;
+
+const mapsStateToProps = (store) =>{
+  return {
+      isLoggedIn: store.isLoggedIn,
+  }
+}
+
+export default connect(mapsStateToProps)(App);

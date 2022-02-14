@@ -1,14 +1,21 @@
+import * as ACTIONS from './Constants';
+
 const defaultState = {
     isLoggedIn : false,
-    username: 'user1',
+    username: '',
     displayName: 'display1',
     image: null,
     password: 'P4ssword'
   };
   const authReducer = (state = {... defaultState}, action) => {
       //console.log(action);
-      if(action.type === "logout-success"){
+      if(action.type === ACTIONS.LOGOUT_SUCCESS){
           return defaultState;
+      } else if(action.type === ACTIONS.LOGIN_SUCCESS){
+          return {
+              ...action.payload,
+              isLoggedIn : true
+          };
       }
       return state;
   };
