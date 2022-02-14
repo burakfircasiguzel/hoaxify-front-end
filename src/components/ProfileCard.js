@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 const ProfileCard = (props) => {
     const pathUsername = props.match.params.username;
-    console.log(props);
+    //console.log(props);
     let message = 'We cannot edit';
     if(pathUsername === props.loggedInUsername){
         message = 'We can edit';
