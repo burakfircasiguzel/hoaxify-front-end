@@ -12,7 +12,12 @@ import authReducer from './authReducer';
         password: undefined
       }
     if(hoaxAuth){
-        stateInLocalStorage =  JSON.parse(hoaxAuth);
+        try{
+            stateInLocalStorage =  JSON.parse(hoaxAuth);
+        }catch(error){
+
+        }
+        
     }
 
      const store = createStore(authReducer, stateInLocalStorage, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
